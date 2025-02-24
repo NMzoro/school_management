@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('class_types', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignIdFor(\App\Models\ClassType::class)->constrained()->cascadeOnDelete();
             $table->string('code');
             $table->softDeletes();
             $table->timestamps();
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('class_types');
+        Schema::dropIfExists('classes');
     }
 };
